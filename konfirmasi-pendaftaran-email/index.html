@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Form Pendaftaran</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --ink: #16302d;
+        --teal: #1f5f5b;
+        --teal-deep: #123c39;
+        --gold: #d9a441;
+        --paper: #fbfaf6;
+        --line: #dfe4e0;
+        --muted: #6b7a76;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: 'Inter', sans-serif;
+        color: var(--ink);
+        background: var(--paper);
+        display: flex;
+    }
+
+    .layout {
+        display: grid;
+        grid-template-columns: 1.05fr 1fr;
+        width: 100%;
+        min-height: 100vh;
+    }
+
+    /* ---------- Panel kiri: identitas ---------- */
+    .intro {
+        background: var(--teal-deep);
+        color: #eef4f2;
+        padding: 64px 56px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .intro::before {
+        content: "";
+        position: absolute;
+        inset: -20% -10% auto auto;
+        width: 420px;
+        height: 420px;
+        background: radial-gradient(circle, rgba(217,164,65,0.25), transparent 70%);
+    }
+
+    .intro::after {
+        content: "";
+        position: absolute;
+        left: -140px;
+        bottom: -140px;
+        width: 320px;
+        height: 320px;
+        border: 1px solid rgba(238,244,242,0.18);
+        border-radius: 50%;
+    }
+
+    .intro-mark {
+        font-size: 15px;
+        letter-spacing: 0.02em;
+        color: rgba(238,244,242,0.7);
+        position: relative;
+    }
+
+    .intro-headline {
+        font-family: 'Fraunces', serif;
+        font-weight: 500;
+        font-size: clamp(34px, 4vw, 48px);
+        line-height: 1.15;
+        max-width: 11ch;
+        margin: 0;
+        position: relative;
+    }
+
+    .intro-body {
+        margin-top: 22px;
+        font-size: 16px;
+        line-height: 1.6;
+        color: rgba(238,244,242,0.8);
+        max-width: 34ch;
+        position: relative;
+    }
+
+    .intro-steps {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-top: 40px;
+    }
+
+    .intro-step {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        font-size: 14px;
+        color: rgba(238,244,242,0.75);
+    }
+
+    .intro-step b {
+        font-family: 'Fraunces', serif;
+        color: var(--gold);
+        font-weight: 500;
+        font-size: 18px;
+        min-width: 20px;
+    }
+
+    .intro-foot {
+        position: relative;
+        font-size: 13px;
+        color: rgba(238,244,242,0.5);
+    }
+
+    /* ---------- Panel kanan: form ---------- */
+    .form-side {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 48px 32px;
+    }
+
+    .form-card {
+        width: 100%;
+        max-width: 380px;
+    }
+
+    .form-card h2 {
+        font-family: 'Fraunces', serif;
+        font-weight: 500;
+        font-size: 26px;
+        margin: 0 0 6px;
+    }
+
+    .form-card p.lead {
+        margin: 0 0 32px;
+        color: var(--muted);
+        font-size: 14.5px;
+        line-height: 1.5;
+    }
+
+    .field {
+        margin-bottom: 20px;
+    }
+
+    .field label {
+        display: block;
+        font-size: 13.5px;
+        font-weight: 500;
+        margin-bottom: 7px;
+        color: var(--ink);
+    }
+
+    .field input {
+        width: 100%;
+        padding: 12px 14px;
+        font-size: 15px;
+        font-family: 'Inter', sans-serif;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        color: var(--ink);
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .field input::placeholder { color: #a9b3af; }
+
+    .field input:focus {
+        outline: none;
+        border-color: var(--teal);
+        box-shadow: 0 0 0 3px rgba(31,95,91,0.14);
+    }
+
+    button.submit {
+        width: 100%;
+        margin-top: 8px;
+        padding: 13px;
+        font-family: 'Inter', sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        color: #fff;
+        background: var(--teal);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    button.submit:hover { background: var(--teal-deep); }
+    button.submit:active { transform: translateY(1px); }
+
+    .form-foot {
+        margin-top: 18px;
+        font-size: 12.5px;
+        color: var(--muted);
+        text-align: center;
+        line-height: 1.5;
+    }
+
+    @media (max-width: 860px) {
+        .layout { grid-template-columns: 1fr; }
+        .intro { padding: 44px 28px; min-height: 260px; }
+        .intro-steps { display: none; }
+        .form-side { padding: 40px 24px; }
+    }
+</style>
+</head>
+<body>
+    <div class="layout">
+        <section class="intro">
+            <div>
+                <div class="intro-mark">Sistem Pendaftaran</div>
+                <h1 class="intro-headline">Satu formulir, konfirmasi langsung ke email kamu</h1>
+                <p class="intro-body">Isi data di sebelah kanan, dan kami kirimkan email konfirmasi begitu pendaftaranmu tersimpan.</p>
+            </div>
+            <div class="intro-steps">
+                <div class="intro-step"><b>01</b> Isi nama, email, dan nomor HP</div>
+                <div class="intro-step"><b>02</b> Data disimpan ke sistem</div>
+                <div class="intro-step"><b>03</b> Email konfirmasi terkirim otomatis</div>
+            </div>
+            <div class="intro-foot">Pastikan email yang kamu masukkan aktif.</div>
+        </section>
+
+        <section class="form-side">
+            <div class="form-card">
+                <h2>Daftar Sekarang</h2>
+                <p class="lead">Lengkapi data berikut untuk menyelesaikan pendaftaranmu.</p>
+
+                <form action="proses_daftar.php" method="POST">
+                    <div class="field">
+                        <label for="nama">Nama Lengkap</label>
+                        <input type="text" id="nama" name="nama" placeholder="Nama sesuai identitas" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="nama@email.com" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="no_hp">No. HP</label>
+                        <input type="text" id="no_hp" name="no_hp" placeholder="08xxxxxxxxxx" required>
+                    </div>
+
+                    <button type="submit" class="submit">Daftar</button>
+                </form>
+
+                <p class="form-foot">Dengan mendaftar, kamu akan menerima satu email konfirmasi otomatis dari sistem ini.</p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

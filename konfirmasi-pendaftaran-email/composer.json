@@ -1,0 +1,7 @@
+{
+    "name": "proyek/konfirmasi-pendaftaran-email",
+    "description": "Studi kasus pengiriman email konfirmasi pendaftaran menggunakan PHPMailer + SMTP Gmail",
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    }
+}
